@@ -1,0 +1,7 @@
+# Build scripts are opt-in in pnpm 12. Prisma needs its postinstall to prepare
+# the query engine; @scarf/scarf is telemetry only, so it stays blocked.
+allowBuilds:
+  prisma: true
+  '@prisma/engines': true
+  esbuild: true
+  '@scarf/scarf': false

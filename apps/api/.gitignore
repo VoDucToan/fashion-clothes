@@ -1,0 +1,17 @@
+# dependencies
+node_modules
+
+# build output
+dist
+*.tsbuildinfo
+
+# generated Prisma Client — recreated by `pnpm db:generate`
+/src/generated
+
+# env: only .env.example is committed
+.env
+.env.*
+!.env.example
+
+# test artifacts
+coverage
