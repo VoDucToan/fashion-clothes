@@ -1,0 +1,18 @@
+// Prisma schema — the single source of truth for the database.
+// Datasource URL lives in prisma.config.ts (Prisma 7 no longer reads env() here).
+
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  runtime             = "nodejs"
+  moduleFormat        = "esm"
+  importFileExtension = "js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Domain models go here, one block per table.
+// See docs/lo-trinh-3-du-an-portfolio.md §1.3 for the target data model
+// (Product, Variant, Cart, Order, Payment, Coupon, ...).
