@@ -15,7 +15,7 @@ docker compose up -d postgres
 
 # 2. API
 cd apps/api
-cp .env.example .env          # set DATABASE_URL to match the compose credentials
+cp .env.example .env          # DATABASE_URL must match POSTGRES_* and POSTGRES_PORT above
 pnpm install
 pnpm db:generate              # generate Prisma Client into src/generated
 pnpm start:dev
