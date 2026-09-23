@@ -50,7 +50,8 @@ apps/api
 ├── prisma/
 │   ├── schema.prisma          # models — the source of truth for the database
 │   ├── migrations/            # generated SQL, committed, applied in order
-│   └── seed.ts                # idempotent development data
+│   ├── seed.ts                # entry point: runs the seeders in foreign-key order
+│   └── seed/                  # reference.ts (all envs) · catalog.ts (dev fixtures)
 ├── prisma.config.ts           # Prisma 7 CLI config (datasource URL, seed command)
 ├── src/
 │   ├── main.ts                # bootstrap: helmet, cookies, CORS, prefix, versioning, Swagger

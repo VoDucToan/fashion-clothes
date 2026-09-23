@@ -3,6 +3,8 @@ import 'dotenv/config';
 import { PrismaPg } from '@prisma/adapter-pg';
 
 import { PrismaClient } from '../src/generated/prisma/client.js';
+import { seedCatalog } from './seed/catalog.js';
+import { seedReference } from './seed/reference.js';
 
 /**
  * Deterministic development data. Keep it idempotent (upsert, not create) so
@@ -13,9 +15,15 @@ const prisma = new PrismaClient({
 });
 
 async function main(): Promise<void> {
-  // TODO: seed categories, products, variants and an admin account once the
-  // models exist in prisma/schema.prisma.
-  console.log('Nothing to seed yet — add models to prisma/schema.prisma first.');
+  // Order is a foreign-key order: every step depends on the one before it.
+  await seedReference(prisma);
+
+  if (process.env.NODE_ENV === 'production') {
+    console.log('Fixtures skipped: reference data only in production.');
+    return;
+  }
+
+  await seedCatalog(prisma);
 }
 
 main()
